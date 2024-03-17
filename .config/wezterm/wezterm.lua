@@ -15,12 +15,20 @@ config.color_scheme = 'Chalk (Gogh)'
 
 config.window_background_opacity = 0.97
 
+local act = wezterm.action
+
 config.keys = {
   -- { key = 't', mods = 'ALT', action = wezterm.action.ShowTabNavigator },
   { key = '|', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '_', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
   { key = 'W', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane { confirm = true }, },
   { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
+  { key = 'b', mods = 'CTRL', action = act.ScrollByPage(-1) },
+  { key = 'f', mods = 'CTRL', action = act.ScrollByPage(1) },
+  { key = 'h', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Left', },
+  { key = 'l', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Right', },
+  { key = 'k', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Up', },
+  { key = 'j', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Down', },
 }
 
 -- Spawn a fish shell in login mode
