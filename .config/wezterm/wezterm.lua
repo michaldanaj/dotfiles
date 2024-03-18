@@ -21,7 +21,11 @@ config.keys = {
   -- { key = 't', mods = 'ALT', action = wezterm.action.ShowTabNavigator },
   { key = '|', mods = 'CTRL|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
   { key = '_', mods = 'CTRL|SHIFT', action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }, },
+  { key = 'w', mods = 'CTRL', action = wezterm.action.CloseCurrentPane { confirm = true }, },
   { key = 'W', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane { confirm = true }, },
+  { key = 't', mods = 'CTRL', action = act.SpawnTab 'DefaultDomain', },
+  -- Create a new tab in the default domain
+  { key = 'T', mods = 'CTRL|SHIFT', action = act.SpawnTab 'CurrentPaneDomain' },
   { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
   { key = 'b', mods = 'CTRL', action = act.ScrollByPage(-1) },
   { key = 'f', mods = 'CTRL', action = act.ScrollByPage(1) },
