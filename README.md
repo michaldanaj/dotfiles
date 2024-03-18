@@ -20,4 +20,10 @@ Poza konfiguracją fish, jest jeszcze w katalogu `~/bin` fishmarks.
 
 ### fishmarks
 
+## vimium
+Roszerzenie przeglądarki. Jest to katalog, z którego należy później zaimportować
+ustawienia. Nie wiem gdzie oryginalnie one leżą. 
+
+Po dokonanych modyfikacjach w ustawieniach vimium, należy ustawienia 
+wyeksportować w to miejsce.
 
