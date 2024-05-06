@@ -39,6 +39,10 @@ Pierwsze podejście umożliwia oczywiście podejście indywidualne do różnych 
 
 Poza konfiguracją fish, jest jeszcze w katalogu `~/bin` fishmarks.
 
+### fish_command_not_found
+
+Dodana jest funkcja obsługi braku nieznalezionej komendy fish_command_not_found. Jest ona pusta, dzięki czemu jest mega szybka. Poprzednia wyszukiwała gdzieś tą komendę co było mega wolne.
+
 ### fishmarks
 
 ## vimium
