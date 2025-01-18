@@ -22,4 +22,4 @@ if status is-interactive
 end
 
 set PATH $PATH /mnt/wspolny/home/michald/.local/bin
-
+set -g __fish_git_prompt_show_status 1
