@@ -7,6 +7,7 @@ if [ $(uname -n) = arch ]; then
    stow bash_arch
 fi
 stow bin
+stow eza
 stow fish
 stow nvim
 #vimium jest konfiguracją do zaimportowania z dodatku
