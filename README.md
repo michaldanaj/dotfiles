@@ -27,8 +27,13 @@ stow --adopt .
 
 ### Inne podejście
 
-Gość pokazuje (tu)[https://www.youtube.com/watch?v=90xMTKml9O0] inne podejście,
+Gość pokazuje [tu](https://www.youtube.com/watch?v=90xMTKml9O0) inne podejście,
 potencjalnie spoko, do rozważenia.
+
+Jego zaletą jest to, że widać od razu co jest skonfigurowane, oraz że można
+dodawać dowolne inne konfiguracje, jak te dla vimium. Nie wiem tylko, czy
+w takim razie jest sens stosować stow, skoro i tak w skrypcie ręcznie 
+wskazuję na wszystkie konfiguracje po kolei.
 
 W katalogu dotfiles ma podkatalogi dla każego programu. Ale do każdego podkatalogu
 będziemy się odnosić tak jakby to był dotfiles z poprzedniego podejścia. Czyli
@@ -57,12 +62,14 @@ run.sh
 
 Poza konfiguracją fish, jest jeszcze w katalogu `~/bin` fishmarks.
 
+Do instalacji tide użylem fisher-a.
 ### fishmarks
 
 ### tide
 
 Jak pisze autor, The ultimate Fish prompt. 
 [https://github.com/IlanCosman/tide](https://github.com/IlanCosman/tide)
+Zainstalowełm to fisherem.
 
 Modyfikacje jakie wprowadziłem, to dodanie innej ikony dla git-a, oraz
 usunięcie spacji między ikoną a nazwą gałęzi.
