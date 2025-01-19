@@ -4,12 +4,13 @@ if status is-interactive
     # Load fishmarks (http://github.com/techwizrd/fishmarkshttp://github.com/techwizrd/fishmarks)
     source ~/bin/fishmarks/marks.fish
 
-    alias ls="eza -F --group-directories-first"
+    alias ls="eza -F  --color=auto\
+        --group-directories-first --icons"
     alias ll="eza -lF --time-style=long-iso --header  --color=auto\
-        --group-directories-first"
-    alias la="eza -aF --color=auto --group-directories-first"
-    alias lal="eza -alF --time-style=long-iso --color=auto --group-directories-first"
-    alias lla="eza -alF --time-style=long-iso --color=auto --group-directories-first"
+        --group-directories-first --git --icons"
+    alias la="eza -aF --color=auto --group-directories-first --git --icons"
+    alias lal="eza -alF --time-style=long-iso --color=auto --group-directories-first --git --icons"
+    alias lla="eza -alF --time-style=long-iso --color=auto --group-directories-first --git --icons"
 
     # Hishtory Config:
     if test (cat /etc/os-release | grep -q '^NAME="Fedora"$')
