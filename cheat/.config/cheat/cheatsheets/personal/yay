@@ -1,0 +1,4 @@
+#Prints system statistics using yay
+yay -Ps
+
+

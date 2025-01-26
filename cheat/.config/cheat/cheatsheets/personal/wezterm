@@ -1,0 +1,5 @@
+# You review all default key assignments by running 
+wezterm show-keys --lua 
+
+# Shortcut to full screen pane:
+# shift+ctrl+z

@@ -1,0 +1,60 @@
+---
+tags: [ packaging ]
+---
+# To search for a package:
+pacman -Ss <package>...
+
+# To get information about package:
+pacman -Si <package>...
+
+# To update the local package base and upgrade all out-of-date packages:
+pacman -Suy
+
+# To install a package:
+pacman -S <package>...
+
+# To install a package from builded package file (.tar.xz):
+pacman -U <file>
+
+### To list ###
+
+# To list the commands provided by an installed package:
+pacman -Ql <package>... | sed -n -e 's/.*\/bin\///p' | tail -n +2
+
+# To list explicitly installed packages:
+pacman -Qe
+
+# To list explicitly installed packages and not required as dependencies:
+pacman -Qet
+
+# To list orphan packages (installed as dependencies and not required anymore):
+pacman -Qdt
+
+# To list all foreign (locally installed) packages (from AUR for example)
+pacman -Qm
+
+# To list the top-most recent explicitly installed packages (not in the base groups):
+expac --timefmt='%Y-%m-%d %T' '%l\t%n' $(comm -23 <(pacman -Qeq|sort) <(pacman -Qqg base base-devel|sort)) | sort -r | head -20
+
+# To list installed packages sorted by size
+pacman -Qq | pacman -Qi - | egrep '(Size\s+:|Name\s+:[^s])' | sed -E 's/ ([KM])iB/\1/' | sed -z 's/\nInstalled/ /g' | perl -pe 's/(Name|Size) *: //g' | column -t | sort -hk2 -r | cat -n | tac
+
+# To which file belongs to
+pacman -Qo <plik>
+
+###   To remove ###
+
+## To uninstall a package:
+pacman -R <package>...
+
+# To uninstall a package and its depedencies, removing all new orphans:
+pacman -Rsn <package>...
+
+# To remove orphan packages
+pacman -Rs $(pacman -Qqtd)
+
+# To update keyring
+sudo pacman -Sy archlinux-keyring
+
+# To remove packages from cash, that are no longer installed
+sudo pacman -Sc

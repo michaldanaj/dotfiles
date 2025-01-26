@@ -1,0 +1,24 @@
+# Ścieżka do tutoriala:
+# https://borgbackup.readthedocs.io/en/stable/quickstart.html
+
+# Utworzenie repozytorium. repo w ścieżce chyba powinno nie istnieć
+# Local repository, repokey encryption, BLAKE2b (often faster, since Borg 1.1)
+borg init --encryption=repokey-blake2 /path/to/repo
+
+# Backup the ~/src and ~/Documents directories into an archive called Monday:
+borg create /path/to/repo::Monday ~/src ~/Documents
+
+# List all archives in the repository
+borg list /path/to/repo
+
+# List the contents of the Monday archive:
+borg list /path/to/repo::Monday
+
+# Restore the Monday archive by extracting the files relative to the current directory:
+borg extract /path/to/repo::Monday
+
+# Delete the Monday archive (please note that this does not free repo disk space):
+borg delete /path/to/repo::Monday
+
+# Recover disk space by compacting the segment files in the repo:
+borg compact /path/to/repo

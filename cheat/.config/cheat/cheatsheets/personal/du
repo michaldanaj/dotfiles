@@ -1,0 +1,8 @@
+# To sort directories/files by size:
+du -sk *| sort -rn
+
+# To show cumulative human-readable size:
+du -sh
+
+# W megabajtach, posortowane od największego, bez rekurencji
+du -m --max-depth=0 *| sort -rn
