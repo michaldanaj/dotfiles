@@ -22,3 +22,6 @@ borg delete /path/to/repo::Monday
 
 # Recover disk space by compacting the segment files in the repo:
 borg compact /path/to/repo
+
+# Wyświetl różnice między archiwami:
+sudo borg diff <repo>::<arch1> <arch2>
