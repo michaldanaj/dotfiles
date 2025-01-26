@@ -3,7 +3,39 @@
 ## Stow
 
 
-### Instrukcja
+### Instrukcja dodania konfiguracji
+
+Jeśli mamy konfigurację programu w katalogu:
+```
+~/.config/program
+```
+Należy wykonać kroki:
+
+Zmodyfikować plik run
+```
+cd ~/dotfiles
+nvim run.sh
+```
+
+Utworzyć nową strukturę i przenieść źródłową konfigurację:
+```
+mkdir program
+mkdir .config/program
+mv ~/.config/program ./program/.config/
+```
+
+Uruchomić przypisanie linków:
+```
+./run.sh
+```
+Zagitować:
+```
+git add program
+git commit -m "<komentarz>"
+git push origin master
+```
+
+### Instrukcja odtworzenia katalogów
 
 Aby dodać linki na kompie, usunąć poszczególne katalogi z dotfiles,
 a następnie wywołać, żeby utworzyć w to miejsce symlinki:
@@ -57,6 +89,12 @@ Dlatego napisałem skrypt, który zainstaluje wszystko z automatu:
 run.sh
 ```
 
+
+## cheat
+
+Podkatalog `community` zawiera swoje repozytorium git, stąd nie jest
+śledzone przez to repo. Można uaktualniać je regularnie o dokonane
+zmiany przez społeczność.
 
 ## Fish
 
