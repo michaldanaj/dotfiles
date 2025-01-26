@@ -7,9 +7,9 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices
 
 -- For example, changing the color scheme:
-config.font = wezterm.font("MesloLGS NF")
+-- config.font = wezterm.font("MesloLGS NF")
 --config.font = wezterm.font 'JetBrains Mono'
---config.font = wezterm.font 'SauceCodePro Nerd Font Propo'
+config.font = wezterm.font("SauceCodePro Nerd Font Propo")
 
 --config.color_scheme = 'Catppuccin Mocha'
 --config.color_scheme = "Chalk (Gogh)"
@@ -84,6 +84,11 @@ config.keys = {
 	{ key = "k", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Up") },
 	{ key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
 }
+
+-- wezterm.on("gui-startup", function(cmd)
+-- 	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+-- 	window:gui_window():maximize()
+-- end)
 
 -- Spawn a fish shell in login mode
 -- config.default_prog = {"C:\\Program Files\\Git\\bin\\bash.exe", '-l' }
