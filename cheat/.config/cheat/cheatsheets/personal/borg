@@ -25,3 +25,9 @@ borg compact /path/to/repo
 
 # Wyświetl różnice między archiwami:
 sudo borg diff <repo>::<arch1> <arch2>
+
+# Wyświetla informacje o repozytorium:
+borg info /path/to/repo
+
+# Wyświetla informacje o archiwum:
+borg info /path/to/repo::Monday
