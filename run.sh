@@ -7,6 +7,7 @@ if [ $(uname -n) = arch ]; then
    stow bash_arch
 fi
 stow bin
+stow cheat
 stow eza
 stow fish
 stow nvim
