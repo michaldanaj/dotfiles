@@ -721,8 +721,17 @@ require("lazy").setup({
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
+				python = { "ruff" },
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+			},
+			formatters = {
+				ruff = {
+					command = "ruff",
+					prepend_args = { "format" },
+					args = {},
+					stdin = false,
+				},
 			},
 		},
 	},
@@ -992,7 +1001,9 @@ require("lazy").setup({
 	},
 })
 
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 --
 vim.opt.colorcolumn = "79"
+vim.wo.relativenumber = true
