@@ -85,6 +85,8 @@ config.keys = {
 	{ key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
 }
 
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+-- config.window_decorations = "TITLE|RESIZE|INTEGRATED_BUTTONS"
 -- wezterm.on("gui-startup", function(cmd)
 -- 	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
 -- 	window:gui_window():maximize()
