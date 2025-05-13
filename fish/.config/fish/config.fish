@@ -14,3 +14,12 @@ if status is-interactive
 
     set -g __fish_git_prompt_show_status 1
 end
+
+set -g EDITOR nvim
+
+# Integracja z fzf
+# CTRL-T - Paste the selected files and directories onto the command-line 
+# ALT-C - cd into the selected directory
+fzf --fish | source
+# usuwam skrót ctrl+r, bo wolę historię z fish
+bind --erase \cr
