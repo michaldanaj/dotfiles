@@ -23,3 +23,7 @@ set -g EDITOR nvim
 fzf --fish | source
 # usuwam skrót ctrl+r, bo wolę historię z fish
 bind --erase \cr
+
+# zoxide
+zoxide init --cmd cd fish | source
+
