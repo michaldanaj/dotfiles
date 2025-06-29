@@ -1,0 +1,16 @@
+## Caching
+
+# clean removes all cache entries from the cache directory, 
+# clearing it out entirely.
+uv cache
+
+# removes all cache entries for the ruff package, useful for 
+# invalidating the cache for a single or finite set of packages.
+uv cache clean ruff
+
+# removes all unused cache entries. For example, the cache 
+# directory may contain entries created in previous uv versions 
+# that are no longer necessary and can be safely removed. uv cache 
+# prune is safe to run periodically, to keep the cache directory clean.
+uv cache prune
+
