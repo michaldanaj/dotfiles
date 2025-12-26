@@ -1,0 +1,6 @@
+# Uruchamia domyślną aplikację dla pliku/URL
+# Odłącza proces od terminala (nowa sesja)
+# Przekierowuje stdout i stderr do /dev/null
+# Uruchamia w tle, bez wypisywania komunikatów
+setsid xdg-open $1 >/dev/null 2>&1 &
+
