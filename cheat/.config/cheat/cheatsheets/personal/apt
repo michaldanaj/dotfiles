@@ -27,3 +27,15 @@ apt remove <package>...
 
 # To list installed packages:
 apt list --installed
+
+# To list reverse dependencies for installed packages:
+apt rdepends --installed <package>
+
+# Symulacja odinstalowania (uwaga na metapakiety, sprawdzić w opisie, po wielkości)
+apt remove --simulate <package>
+
+# Lista plików
+dpkg -L <package>
+
+# Pakiety oznaczone jako manual install, ale również przez system
+apt-mark showmanual
