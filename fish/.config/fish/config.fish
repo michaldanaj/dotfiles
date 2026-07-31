@@ -11,6 +11,10 @@ if status is-interactive
     alias la="eza -aF --color=auto --group-directories-first --git --icons"
     alias lal="eza -alF --time-style=long-iso --color=auto --group-directories-first --git --icons"
     alias lla="eza -alF --time-style=long-iso --color=auto --group-directories-first --git --icons"
+    # sortowanie, najnowsze modyfikacje na dole, bez grupowania katalogów
+    alias lsn="eza -lF --time-style=long-iso --color=auto --git --icons --sort=modified"
+    # sortowanie, najnowsze modyfikacje na górze, bez grupowania katalogów
+    alias lsnr="eza -lF --time-style=long-iso --color=auto --git --icons --sort=modified --reverse"
 
     set -g __fish_git_prompt_show_status 1
 end
