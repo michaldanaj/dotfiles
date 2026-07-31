@@ -17,9 +17,21 @@ def main():
 
         # Naprawa kodowania
         if data[0:2] == b"\xcb\x99":
-            fixed_data = data.decode("utf8").encode("cp1250").decode("utf-16-le")
+            print("1")
+            print("decode utf8")
+            fixed_data = data.decode("utf8")
+            print("encode cp1250")
+            fixed_data = fixed_data.encode("cp1250").decode("utf-16-le")
+            print("decode utf-16-le")
+            # fixed_data = fixed_data.decode("utf-16-le")
         else:
-            fixed_data = data.decode("utf8").encode("cp1250").decode("utf8")
+            print("2")
+            print("decode utf8")
+            fixed_data = data.decode("utf8")
+            print("encode cp1250")
+            fixed_data = fixed_data.encode("cp1250", errors="replace")
+            print("decode utf8")
+            fixed_data = fixed_data.decode("utf8", errors="replace")
 
         with open(output_filename, "w", encoding="utf8") as file:
             file.write(fixed_data)
