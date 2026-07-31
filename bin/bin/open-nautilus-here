@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Pobierz aktywne okno (id)
+active_win=$(gdbus call \
+  --session \
+  --dest org.gnome.Shell \
+  --object-path /org/gnome/Shell \
+  --method org.gnome.Shell.Eval \
+  "global.display.focus_window.get_id()" | grep -oP '[0-9]+')
+
+active_win=$(gdbus call \
+  --session \
+  --dest org.gnome.Shell \
+  --object-path /org/gnome/Shell \
+  --method org.gnome.Shell.Eval \
+  "global.display.focus_window.get_id()" )
+echo $active_win
+
+# Jeśli się nie udało — wyjdź
+[ -z "$active_win" ] && exit 1
+
+# Pobierz pid procesu powiązany z oknem
+pid=$(gdbus introspect \
+  --session \
+  --dest org.gnome.Shell \
+  --object-path /org/gnome/Shell/WindowTracker \
+  | grep -oP "Window.*$active_win" -A1 \
+  | grep -oP "pid=\K[0-9]+")
+
+echo $pid
+
+[ -z "$pid" ] && exit 1
+
+# Przejdź do procesu nadrzędnego terminala
+while [ "$pid" -ne 1 ]; do
+    cwd=$(readlink "/proc/$pid/cwd" 2>/dev/null)
+    if [[ -n "$cwd" && "$cwd" != "/" ]]; then
+        nautilus "$cwd"
+        exit 0
+    fi
+    pid=$(grep -oP '(?<=PPid:\s)\d+' "/proc/$pid/status" 2>/dev/null)
+done
+
+exit 1

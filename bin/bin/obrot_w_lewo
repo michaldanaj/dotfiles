@@ -1,0 +1,34 @@
+#!/bin/bash
+# Obraca film o 90 stopni w lewo
+# Przyjmuje:
+# - $1 → plik wejściowy (wymagany)
+# - $2 → plik wyjściowy (opcjonalny)
+# - jeśli $2 nie zostanie podany → tworzy nazwę z dopiskiem
+#   _obrot przed rozszerzeniem
+
+# Sprawdzenie czy podano plik wejściowy
+if [ -z "$1" ]; then
+    echo "Użycie: $0 input.mp4 [output.mp4]"
+    exit 1
+fi
+
+INPUT="$1"
+OUTPUT="$2"
+
+# Jeśli nie podano pliku wyjściowego
+if [ -z "$OUTPUT" ]; then
+    # Rozdzielenie nazwy i rozszerzenia
+    FILENAME="${INPUT%.*}"
+    EXTENSION="${INPUT##*.}"
+    OUTPUT="${FILENAME}_obrot.${EXTENSION}"
+fi
+
+# Uruchomienie ffmpeg z Intel Quick Sync (H.265)
+ffmpeg  -i "$INPUT" \
+    -vf "transpose=2" \
+    -c:v libx265 \
+    -crf 23 \
+    -preset medium \
+    -c:a copy \
+    "$OUTPUT"
+
