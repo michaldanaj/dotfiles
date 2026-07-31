@@ -10,6 +10,9 @@ dnf search <phrase>
 # To find which package provides an executable:
 dnf provides <executable>
 
+# To find which package provides an command or path:
+dnf provides '*/<command>'
+
 # The following are available after installing "dnf-plugins-core"
 
 # To download a package:
@@ -19,4 +22,26 @@ dnf download <package>
 dnf builddep <file>
 
 # List installed packages
-dnf list installed
+dnf list --installed
+
+# List all files installed by package
+rpm -ql <nazwa_pakietu>
+
+# List all R packages
+dnf repoquery --repo=fedora-source 'R-*'
+
+# Search packages by name, for example
+dnf repoquery 'R-*'
+
+# Wyświetla aktywne i nieaktywne repozytoria
+dnf repo list --all
+
+# Wyświetla aktywne repozytoria
+dnf repo list --enabled
+
+# historia transakcji
+dnf history list
+
+# szczegóły jednej transakcji
+dnf history info <id>
+
