@@ -1,0 +1,21 @@
+
+// poniżej nadpisujemy to, co ustawił DMS
+layout {
+    focus-ring {
+        width 2
+        // active-gradient from="#fff4b0" to="#d4a017" angle=180
+        active-gradient from="#ffffff" to="#d4a017" angle=180
+        // active-color "#fff4b0"
+    }
+}
+
+// centrowanie kursora myszy po przeskoczeniu z focus na okno
+input {
+    warp-mouse-to-focus mode="center-xy"
+}
+
+binds {
+    Mod+B       { spawn "bookmark-type"; }
+    Mod+Alt+B       { spawn "bookmark-open"; }
+    Mod+Shift+B { spawn "bookmark-add"; }
+}

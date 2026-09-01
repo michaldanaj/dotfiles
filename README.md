@@ -112,6 +112,10 @@ Zainstalowełm to fisherem.
 Modyfikacje jakie wprowadziłem, to dodanie innej ikony dla git-a, oraz
 usunięcie spacji między ikoną a nazwą gałęzi.
 
+## niri
+
+Window manager, nic do dodania.
+
 ## vimium
 Roszerzenie przeglądarki. Jest to katalog, z którego należy później zaimportować
 ustawienia. Nie wiem gdzie oryginalnie one leżą. 

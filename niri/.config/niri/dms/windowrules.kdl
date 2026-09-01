@@ -1,0 +1,26 @@
+// DMS Window Rules - Managed by DankMaterialShell
+// Do not edit manually - changes may be overwritten
+
+// @id=wr_1781939492751039036 @name=chrome-chatgpt.com__-Default
+window-rule {
+    match app-id="^chrome-chatgpt.com__-Default$"
+    opacity 0.85
+}
+
+// @id=wr_1781941440498113563 @name=chrome-claude.ai__new-Default
+window-rule {
+    match app-id="^chrome-claude.ai__new-Default$"
+    opacity 0.85
+}
+
+// @id=wr_1782387935342862152 @name=code
+window-rule {
+    match app-id="^code$"
+    opacity 0.90
+}
+
+// @id=dms-floating-windows @name=DMS Floating Windows
+window-rule {
+    match app-id="^com.danklinux.dms$"
+    open-floating true
+}

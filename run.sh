@@ -11,5 +11,6 @@ stow cheat
 stow eza
 stow fish
 stow nvim
+stow niri
 #vimium jest konfiguracją do zaimportowania z dodatku
 stow wezterm
