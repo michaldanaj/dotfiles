@@ -31,3 +31,6 @@ bind --erase \cr
 # zoxide
 zoxide init --cmd cd fish | source
 
+# miniconda
+set -g PATH $PATH /opt/miniforge/condabin
+
