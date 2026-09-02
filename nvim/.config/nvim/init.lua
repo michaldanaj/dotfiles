@@ -917,11 +917,14 @@ require("lazy").setup({
 	},
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		-- The old `master` branch (and its `nvim-treesitter.configs`/`opts` API) is no
+		-- longer maintained against current Neovim releases. `main` is the rewrite.
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
-		main = "nvim-treesitter.configs", -- Sets main module to use for opts
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-		opts = {
-			ensure_installed = {
+		init = function()
+			local ensure_installed = {
 				"bash",
 				"c",
 				"diff",
@@ -933,18 +936,29 @@ require("lazy").setup({
 				"query",
 				"vim",
 				"vimdoc",
-			},
-			-- Autoinstall languages that are not installed
-			auto_install = true,
-			highlight = {
-				enable = true,
-				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-				--  If you are experiencing weird indenting issues, add the language to
-				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-				additional_vim_regex_highlighting = { "ruby" },
-			},
-			indent = { enable = true, disable = { "ruby" } },
-		},
+			}
+			-- Ruby's indent rules depend on vim's regex indenting; leave its
+			-- treesitter indentexpr unset like the old `indent.disable = { "ruby" }`.
+			local indent_disabled = { ruby = true }
+
+			require("nvim-treesitter").install(ensure_installed)
+
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(event)
+					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					if not vim.tbl_contains(ensure_installed, lang) then
+						-- Autoinstall languages that are not installed
+						pcall(function()
+							require("nvim-treesitter").install({ lang }):wait(30000)
+						end)
+					end
+					local started = pcall(vim.treesitter.start)
+					if started and not indent_disabled[lang] then
+						vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+					end
+				end,
+			})
+		end,
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
 		--
