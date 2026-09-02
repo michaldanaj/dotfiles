@@ -1,0 +1,81 @@
+function pdf-duplex-manual \
+  --description "Prepare PDF for manual duplex printing (odd/even reversed)"
+
+    if test (count $argv) -lt 1
+        echo "Usage: pdf-duplex-manual input.pdf [--2up] [--landscape] [--numbers] [--paper A4] [--keep]"
+        return 1
+    end
+
+    set input $argv[1]
+    set base (path basename $input .pdf)
+
+    set nup 1
+    set orientation portrait
+    set numbers 0
+    set paper a4paper
+    set keep 0
+
+    for arg in $argv[2..-1]
+        switch $arg
+            case --2up
+                set nup 2
+            case --landscape
+                set orientation landscape
+            case --numbers
+                set numbers 1
+            case --paper
+                set paper $argv[(math (contains -i -- $arg $argv) + 1)]paper
+            case --keep
+                set keep 1
+        end
+    end
+
+    set work1 /tmp/$base-numbered.pdf
+    set work2 /tmp/$base-imposed.pdf
+    set work3 /tmp/$base-padded.pdf
+
+    # 1. Optional page numbering
+    if test $numbers -eq 1
+        pdfjam $input \
+          --pagecommand '{\thispagestyle{plain}}' \
+          --preamble '\usepackage{fancyhdr}\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}' \
+          -o $work1
+    else
+        cp $input $work1
+    end
+
+    # 2. N-up + orientation
+    if test $nup -eq 2
+        set nupopt "--nup 2x1"
+    else
+        set nupopt ""
+    end
+
+    if test $orientation = landscape
+        set orientopt "--landscape"
+    else
+        set orientopt ""
+    end
+
+    pdfjam $work1 \
+      $nupopt \
+      $orientopt \
+      --paper $paper \
+      --frame false \
+      -o $work2
+
+    # 3. Pad to even number of pages
+    pdfjam $work2 --addtotoc '' -o $work3
+
+    # 4. Split odd / even (even reversed)
+    pdfjam $work3 '1,3,5,7,9,11,...' -o $base-odd.pdf
+    pdfjam $work3 '...,10,8,6,4,2'   -o $base-even.pdf
+
+    echo "Generated:"
+    echo "  $base-odd.pdf   (print first)"
+    echo "  $base-even.pdf  (print after reinserting stack)"
+
+    if test $keep -eq 0
+        rm -f $work1 $work2 $work3
+    end
+end
