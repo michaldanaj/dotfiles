@@ -18,6 +18,8 @@ config.color_scheme = "Tokyo Night"
 
 config.window_background_opacity = 0.95
 
+config.scrollback_lines = 30000
+
 local act = wezterm.action
 
 --   domyślne przydatne skróty   ---
@@ -85,7 +87,7 @@ config.keys = {
 	{ key = "j", mods = "CTRL|SHIFT", action = act.ActivatePaneDirection("Down") },
 }
 
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+-- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 -- config.window_decorations = "TITLE|RESIZE|INTEGRATED_BUTTONS"
 -- wezterm.on("gui-startup", function(cmd)
 -- 	local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
