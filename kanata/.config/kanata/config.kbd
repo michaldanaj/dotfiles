@@ -1,0 +1,57 @@
+;; ~/.config/kanata/config.kbd
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defvar
+  tap-time          200
+  nav-hold-time     170
+  ;; space-tap-time    200
+  ;; space-hold-time   200
+  hrm-timeout       200
+)
+
+(defsrc
+  caps spc
+  h    j    k    l    u    i    ,    m    y    o    n    .    w    b
+  a    ;    d    s
+)
+
+;; Przypisanie klawiszy do rąk — standardowy podział QWERTY
+(defhands
+  (left  q w e r t a s d f g z x c v b)
+  (right y u i o p h j k l scln n m , . /)
+)
+
+(deflayer default
+  @cnav     _
+  _   _   @k-ctl  @l-win  _   _   _   _   _   _   _   _   _   _
+  @a-win    @scln-win  @d-ctl  @s-win
+)
+
+(deflayer nav
+  _    _
+  left down up right pgdn pgup pgdn C-right home end C-left C-right C-right C-left
+  _    _    _    _
+)
+
+(deflayer spacenav
+  _    _
+  home _    pgup end  _    _    _    _    _    _    _    _    _    _
+  _    _    _    _
+)
+
+(defalias
+  cnav      (tap-hold $tap-time $nav-hold-time esc (layer-while-held nav))
+  ;; spcnav    (tap-hold-press $space-tap-time $space-hold-time spc (layer-while-held spacenav))
+
+  ;; Chordal hold: klawisz tej samej ręki co litera -> zawsze tap,
+  ;; klawisz przeciwnej ręki -> hold (prawdziwy chord)
+  a-win     (tap-hold-opposite-hand-release $hrm-timeout a lmet (same-hand tap) (unknown-hand hold) (timeout hold))
+  s-win     (tap-hold-opposite-hand-release $hrm-timeout s lmet (same-hand tap) (unknown-hand hold) (timeout hold))
+  d-ctl     (tap-hold-opposite-hand-release $hrm-timeout d lctl (same-hand tap) (unknown-hand hold) (timeout hold))
+  k-ctl     (tap-hold-opposite-hand-release $hrm-timeout k lctl (same-hand tap) (unknown-hand hold) (timeout hold))
+  l-win     (tap-hold-opposite-hand-release $hrm-timeout l lmet (same-hand tap) (unknown-hand hold) (timeout hold))
+  scln-win  (tap-hold-opposite-hand-release $hrm-timeout ; lmet (same-hand tap) (unknown-hand hold) (timeout hold))
+)
