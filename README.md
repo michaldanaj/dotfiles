@@ -19,9 +19,9 @@ nvim run.sh
 
 Utworzyć nową strukturę i przenieść źródłową konfigurację:
 ```
-mkdir program
-mkdir .config/program
-mv ~/.config/program ./program/.config/
+set prog <program>
+mkdir -p $prog/.config
+mv ~/.config/$prog ./$prog/.config/
 ```
 
 Uruchomić przypisanie linków:

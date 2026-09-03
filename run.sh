@@ -10,6 +10,7 @@ stow bin
 stow cheat
 stow eza
 stow fish
+stow kanata
 stow nvim
 stow niri
 #vimium jest konfiguracją do zaimportowania z dodatku
