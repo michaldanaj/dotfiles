@@ -1,10 +1,18 @@
 
 // poniżej nadpisujemy to, co ustawił DMS
 layout {
+    gaps 8
     focus-ring {
-        width 2
+        width 4
         // active-gradient from="#fff4b0" to="#d4a017" angle=180
-        active-gradient from="#ffffff" to="#d4a017" angle=180
+        // active-gradient from="#00bfff" to="#d4a017" angle=180
+            
+        // deep sky blue
+        // active-color "#00bfff"
+
+        // klasyczny blue sky
+        active-color "#87ceeb"
+
         // active-color "#fff4b0"
     }
 }
